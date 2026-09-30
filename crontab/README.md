@@ -8,7 +8,7 @@
 
 ## Estructura de carpetas
 ```
-Crontab/
+crontab/
 ├── README.md
 ├── Codigo/
 │   ├── salud_sistema.sh      # Script de monitoreo (lo ejecuta cron)
@@ -23,7 +23,7 @@ Crontab/
 
 ## Uso
 ```bash
-cd Crontab/Codigo
+cd crontab/Codigo
 chmod +x *.sh
 ./instalar_cron.sh                              # instala la tarea */2 * * * *
 crontab -l                                      # verifica la tarea
