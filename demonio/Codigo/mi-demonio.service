@@ -1,0 +1,21 @@
+# ============================================================
+# mi-demonio.service
+# Unidad de systemd que convierte mi_demonio.sh en un servicio
+# del sistema (demonio). Se instala en /etc/systemd/system/
+# ============================================================
+
+[Unit]
+# Texto que aparece en systemctl status y en el journal
+Description=Mi primer demonio
+
+[Service]
+# Usuario sin privilegios con el que corre el proceso
+User=hector
+# Programa que systemd ejecuta al iniciar el servicio
+ExecStart=/home/hector/mi_demonio.sh
+# Si el proceso termina (por error o porque lo matan), systemd lo reinicia
+Restart=always
+
+[Install]
+# Arranca automaticamente al iniciar el sistema en modo multiusuario
+WantedBy=multi-user.target
