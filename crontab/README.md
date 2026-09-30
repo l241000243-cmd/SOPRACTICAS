@@ -55,6 +55,16 @@ tail -f ~/salud_sistema/salud_sistema.log       # ve el registro en vivo
 - Usa rutas absolutas y `$HOME`, ya que cron no abre una terminal ni carga `.bashrc`.
 - Marca **ALERTA** cuando la RAM supera el 80 % o el disco el 85 %.
 
+## Evidencias
+- `Terminal/capturas/01_crontab_funcionando.jpg`: prueba de cron en la terminal (Konsole) de `hector@HP-Papas`:
+  - se agrega una tarea `* * * * *` que escribe `Cron funcionando: $(date)` en `~/mensaje_cron.txt`;
+  - se verifica con `crontab -l`;
+  - con `cat` se ve que se ejecutó cada minuto (09:22 y 09:23);
+  - al final se limpia con `crontab -r` y `rm`.
+- `Terminal/video/demo_crontab.mp4`: grabación de esa misma prueba.
+
+Esta prueba confirma que el demonio cron lanza tareas en segundo plano de forma periódica. Es el mismo mecanismo que usa `salud_sistema.sh` con la expresión `*/2 * * * *`.
+
 ## Conclusiones técnicas
 1. **cron** es un demonio que despierta cada minuto, revisa las tablas de tareas y lanza las que coinciden con la hora. Así se automatiza el monitoreo sin dejar ningún proceso ocupando memoria entre ejecuciones (a diferencia de un `while true; sleep`).
 2. El entorno de cron es diferente al de la terminal (PATH reducido, sin variables del usuario). Por eso los scripts programados deben ser autosuficientes y usar rutas absolutas.
